@@ -1,3 +1,16 @@
+require 'rake'
+require 'rspec'
+require 'rspec/core'
+require 'rspec/core/rake_task'
+
+task :default => :spec
+
+desc "Run all specs in spec directory (excluding plugin specs)"
+RSpec::Core::RakeTask.new do |t|
+  t.rspec_opts = ["-c", "-f progress", "-r ./spec/spec_helper.rb"]
+  t.pattern = 'spec/**/*_spec.rb'
+end
+
 begin
   require "jeweler"
   Jeweler::Tasks.new do |gem|

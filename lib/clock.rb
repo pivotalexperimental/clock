@@ -1,20 +1,13 @@
-class Clock
-  def self.today
-    self.now.to_date
-  end
-end
+require 'rails'
+require 'clock/clock'
 
 module Pivotal
   module Clock
-    class Railtie < ::Rails::Railtie
+    class Railtie < ::Rails::Engine
+      config.autoload_paths << File.expand_path(File.join(File.dirname(__FILE__), 'clock'))
       config.before_configuration do
-        Pivotal::Clock.use_mock_clock? ? require("mock_clock") : require('real_clock')
+        ::Clock.use_mock_clock? ? require("clock/mock_clock") : require('clock/real_clock')
       end
-    end
-
-    def self.use_mock_clock?
-      return USE_MOCK_CLOCK if Object.const_defined?(:USE_MOCK_CLOCK)
-      return ::Rails.env.test?
     end
   end
 end
