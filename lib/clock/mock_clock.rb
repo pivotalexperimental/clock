@@ -20,6 +20,7 @@ class Clock
   end
 
   def self.zone
+    require 'clock/time_zone_proxy'
     return nil if Time.zone.nil?
     TimeZoneProxy.new(Time.zone)
   end
