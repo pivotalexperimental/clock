@@ -21,7 +21,7 @@ begin
     gem.homepage = "http://github.com/pivotal/clock"
     gem.authors = ["Pivotal Labs"]
     gem.files = Dir["{lib}/**/*"]
-    gem.add_dependency "rails", '~> 3.0.0'
+    gem.add_dependency "rails", '>= 3.0.0'
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."
